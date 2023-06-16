@@ -1,15 +1,7 @@
-import { Books } from "@/models/Books";
-
-export default async function Home() {
-  const books = await Books;
-  console.log(books);
-
+export default function Home() {
   return (
-    <div>
-      <p>Home</p>
-      {/* {books.map((book) => {
-          <p>{book.title}</p>;
-        })} */}
+    <div className="w-full">
+      <h2>Home</h2>
     </div>
   );
 }
