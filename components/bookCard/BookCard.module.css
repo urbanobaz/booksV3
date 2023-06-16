@@ -1,0 +1,81 @@
+.card {
+  padding: 20px;
+  height: 250px;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 250px;
+  flex-basis: 20px;
+  text-align: center;
+  border: 1px solid #9b9b9b;
+  text-decoration: none;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+}
+
+.card:hover {
+  border-color: #067df7;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card p {
+  margin: 0;
+  padding: 7px 0 0;
+  font-size: 13px;
+}
+
+.cardContents {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.checkboxWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.button {
+  margin-top: 10px;
+  color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  height: 25px;
+  background-color: white;
+}
+
+.button:hover {
+  background-color: whitesmoke;
+  box-shadow: 5px 10px 15px -10px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 500px) {
+  .card {
+    width: 300px;
+    height: 300px;
+  }
+
+  .card h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+}
