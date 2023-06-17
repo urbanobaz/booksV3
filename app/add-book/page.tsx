@@ -1,3 +1,5 @@
+"use client";
+
 import AddBookForm from "@/components/addBookForm/AddBookForm";
 import React from "react";
 

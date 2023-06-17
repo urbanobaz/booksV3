@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Book, allBooks } from "@/models/Books";
+import { allBooks } from "@/models/Books";
+import { Book } from "@/models/Book";
 import db from "@/db";
 
 export default async function handler(
