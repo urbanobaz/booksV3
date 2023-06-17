@@ -17,12 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" data-theme="dracula">
         <body className={inter.className}>
           <Navbar />
-          <div className="mt-24 max-w-7xl mx-auto flex justify-center">
-            {children}
-          </div>
+          <div className="children-wrapper">{children}</div>
         </body>
       </html>
     </ClerkProvider>
