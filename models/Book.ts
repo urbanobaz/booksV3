@@ -1,3 +1,4 @@
+import db from "@/db";
 import { WithId } from "mongodb";
 import { z } from "zod";
 
@@ -13,3 +14,9 @@ export const Book = z.object({
 
 export type BookType = z.infer<typeof Book>;
 export type BookWithId = WithId<BookType>;
+
+export const addBook = (book: BookType, userEmail: string) =>
+  db.collection("books").insertOne({
+    ...book,
+    userEmail,
+  });

@@ -7,5 +7,3 @@ export const booksByUser = (userEmail: string) =>
     .collection("books")
     .find({ user: { $eq: userEmail } })
     .toArray();
-
-// export const addBook = (book: Book, userEmail: string) => db.collect

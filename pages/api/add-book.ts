@@ -1,16 +1,21 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Book, BookType } from "@/models/Book";
-import db from "@/db";
+import { BookType } from "@/models/Book";
+import { addBook } from "@/models/Book";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<BookType | { message: string }>
 ) {
   if (req.method === "POST") {
-    const validatedBook = await Book.parseAsync(req.body);
-    const insertBook = await db.collection("books").insertOne(validatedBook);
+    const bookDetails = {
+      title: "Title",
+      author: "Ray Dalio",
+      pages: 300,
+      published: new Date(),
+    };
+    const email = "urbanobaz@yahoo.com";
+    const insertBook = await addBook(bookDetails, email);
     return res.status(200).json({
-      _id: insertBook.insertedId,
       ...req.body,
     });
   }
