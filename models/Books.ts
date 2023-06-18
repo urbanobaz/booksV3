@@ -1,9 +1,9 @@
-import db from "@/db";
+import { getAllBooks } from "@/lib/mongo/books";
 
-export const allBooks = db.collection("books").find({}).toArray();
+export const allBooks = getAllBooks();
 
-export const booksByUser = (userEmail: string) =>
-  db
-    .collection("books")
-    .find({ user: { $eq: userEmail } })
-    .toArray();
+// export const booksByUser = (userEmail: string) =>
+//   db
+//     .collection("books")
+//     .find({ user: { $eq: userEmail } })
+//     .toArray();

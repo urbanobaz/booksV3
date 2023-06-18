@@ -1,6 +1,7 @@
-import db from "@/db";
-import { WithId } from "mongodb";
+import clientPromise from "@/lib/mongo/client";
 import { z } from "zod";
+
+const db = await clientPromise();
 
 export const Book = z.object({
   // _id: z.instanceof(ObjectId),
@@ -12,10 +13,7 @@ export const Book = z.object({
   user: z.string().min(3),
 });
 
-export type BookType = z.infer<typeof Book>;
-export type BookWithId = WithId<BookType>;
-
-export const addBook = (book: BookType, userEmail: string) =>
+export const addBook = (book, userEmail) =>
   db.collection("books").insertOne({
     ...book,
     userEmail,

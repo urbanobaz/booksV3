@@ -1,35 +1,24 @@
 "use client";
 
+import { useRef } from "react";
 import styles from "./AddBookForm.module.css";
 import { cn } from "@/app/helpers/utils";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Book, BookType } from "@/models/Book";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { create } from "../../app/_actions";
+import { useRouter } from "next/navigation";
 
 export default function AddBookForm() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(Book),
-  });
-  const onSubmit = async (data: any) => {
-    const response = await fetch("/api/add-book", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const json = await response.json();
-    console.log(json);
-  };
+  const formRef = useRef();
+  const router = useRouter();
+
+  async function action(formData) {
+    await create(formData);
+    formRef.current?.reset();
+    router.push("/dashboard");
+  }
   return (
     <form
       className="container max-w-3xl mx-auto w-full flex flex-col"
-      onSubmit={handleSubmit(onSubmit)}
+      action={action}
     >
       {[]}
       <h1 className={cn(styles.title, "mt-4")}>Add a book</h1>
@@ -38,22 +27,19 @@ export default function AddBookForm() {
           <label className={cn(styles.label, "")}>Title</label>
         </div>
         <input
+          name="title"
           type="text"
-          className={`input input-bordered input-primary w-full max-w-sm ${
-            !!errors.title && "input-error"
-          } md:max-w-lg`}
-          {...register("title")}
+          className={`input input-bordered input-primary w-full max-w-sm md:max-w-lg`}
         />
-        {/* {errors.title && <span>{errors.title.message && errors.title.message}</span>} */}
       </div>
       <div className={styles.row}>
         <div className={styles.labelWrapper}>
           <label className={cn(styles.label, "")}>Author</label>
         </div>
         <input
+          name="author"
           type="text"
           className="input input-bordered input-primary w-full max-w-sm md:max-w-lg"
-          {...register("author")}
         />
       </div>
       <div className={styles.row}>
@@ -61,10 +47,10 @@ export default function AddBookForm() {
           <label className={cn(styles.label, "")}>Pages</label>
         </div>
         <input
+          name="pages"
           type="number"
           step="any"
           className="input input-bordered input-primary w-full max-w-sm md:max-w-lg"
-          {...register("pages")}
         />
       </div>
       <div className={styles.row}>
@@ -72,12 +58,14 @@ export default function AddBookForm() {
           <label className={cn(styles.label, "")}>Published</label>
         </div>
         <input
+          name="published"
           type="date"
           className="input input-bordered input-primary w-full max-w-sm md:max-w-lg"
-          {...register("published")}
         />
       </div>
-      <button className="btn btn-secondary">Add</button>
+      <button type="submit" className="btn btn-secondary">
+        Add
+      </button>
     </form>
   );
 }
