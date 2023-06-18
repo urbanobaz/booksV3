@@ -12,6 +12,8 @@ export default async function handler(
       author: "Ray Dalio",
       pages: 300,
       published: new Date(),
+      read: true,
+      user: "urbanobaz@yahoo.com",
     };
     const email = "urbanobaz@yahoo.com";
     const insertBook = await addBook(bookDetails, email);

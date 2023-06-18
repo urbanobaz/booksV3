@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./BookCard.module.css";
@@ -22,7 +24,11 @@ const BookCard: React.FC<BookCardProps> = ({ title, author, pages, read }) => {
           <div className={styles.row}>
             <p>Read:</p>
             <div className={styles.checkboxWrapper}>
-              <input type="checkbox" checked={read} />
+              <input
+                type="checkbox"
+                checked={read}
+                onChange={() => console.log("Changed")}
+              />
             </div>
           </div>
           <button className={styles.button} type="button">
