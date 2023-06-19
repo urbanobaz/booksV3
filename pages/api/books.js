@@ -1,12 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { allBooks } from "@/models/Books";
 import { Book } from "@/models/Book";
-import db from "@/db";
+import db from "@/lib/mongo/client";
+import { getAllBooks } from "@/lib/mongo/books";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req, res) {
   try {
     switch (req.method) {
       case "POST": {
@@ -20,7 +16,7 @@ export default async function handler(
         });
       }
       case "GET": {
-        const books = await allBooks;
+        const { books } = await getAllBooks();
         return res.status(200).json(books);
       }
       default: {
@@ -28,7 +24,6 @@ export default async function handler(
       }
     }
   } catch (e) {
-    const error = e as Error;
     return res.status(500).json({ message: error });
   }
 }

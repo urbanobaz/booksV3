@@ -8,7 +8,7 @@ type BookCardProps = {
   title: string;
   author: string;
   pages: number;
-  publishedDate: string;
+  publishedDate: Date;
   id: string;
   read: boolean;
 };

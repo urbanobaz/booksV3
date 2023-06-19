@@ -1,11 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { BookType } from "@/models/Book";
 import { addBook } from "@/models/Book";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<BookType | { message: string }>
-) {
+export default async function handler(req, res) {
   if (req.method === "POST") {
     const bookDetails = {
       title: "Title",
