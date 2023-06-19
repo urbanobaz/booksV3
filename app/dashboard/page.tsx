@@ -14,10 +14,9 @@ export default async function Home() {
   );
 
   return (
-    <div className="w-full">
-      <h2></h2>
+    <div className="max-w-7xl mx-auto w-full pt-4">
       <p>{`${user?.emailAddresses[0].emailAddress} has ${books.length} in their book list.`}</p>
-      <div className="flex">
+      <div className="flex flex-wrap">
         {books &&
           books.map(
             (book: {
