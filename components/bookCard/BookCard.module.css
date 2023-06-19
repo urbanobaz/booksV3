@@ -21,12 +21,18 @@
   margin: 0;
   font-size: 18px;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .cardContainer p {
   margin: 0;
   padding: 7px 0 0;
   font-size: 13px;
+  display: flex;
+  flex-direction: column;
 }
 
 .cardContents {

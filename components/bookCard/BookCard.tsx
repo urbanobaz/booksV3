@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./BookCard.module.css";
 import { deleteAction, updateReadAction } from "@/app/actions";
 import { useRouter } from "next/navigation";
+import { cn } from "@/app/helpers/utils";
 
 type BookCardProps = {
   title: string;
@@ -33,8 +34,8 @@ const BookCard: React.FC<BookCardProps> = ({
     router.refresh();
   }
   return (
-    <div className={styles.cardContainer}>
-      <div className={styles.cardContents}>
+    <div className={cn(styles.cardContainer, "h-full")}>
+      <div className={cn(styles.cardContents, "h-full")}>
         <h3>{title}</h3>
         <p>by {author}</p>
         <p>Pages: {pages}</p>
@@ -48,13 +49,15 @@ const BookCard: React.FC<BookCardProps> = ({
             />
           </div>
         </div>
-        <button
-          className={styles.button}
-          type="button"
-          onClick={() => deleteItem(id)}
-        >
-          Delete
-        </button>
+        <div className="w-full h-1/4 flex flex-col justify-end">
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => deleteItem(id)}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
