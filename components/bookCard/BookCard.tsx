@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
+import React from "react";
 import styles from "./BookCard.module.css";
+import { deleteAction } from "@/app/actions";
+import { useRouter } from "next/navigation";
 
 type BookCardProps = {
   title: string;
@@ -13,30 +14,43 @@ type BookCardProps = {
   read: boolean;
 };
 
-const BookCard: React.FC<BookCardProps> = ({ title, author, pages, read }) => {
+const BookCard: React.FC<BookCardProps> = ({
+  title,
+  author,
+  pages,
+  read,
+  id,
+}) => {
+  const router = useRouter();
+  async function deleteItem(id: string) {
+    await deleteAction(id);
+    router.push("/dashboard");
+  }
   return (
-    <Link href="/">
-      <div className={styles.card}>
-        <div className={styles.cardContents}>
-          <h3>{title}</h3>
-          <p>by {author}</p>
-          <p>Pages: {pages}</p>
-          <div className={styles.row}>
-            <p>Read:</p>
-            <div className={styles.checkboxWrapper}>
-              <input
-                type="checkbox"
-                checked={read}
-                onChange={() => console.log("Changed")}
-              />
-            </div>
+    <div className={styles.cardContainer}>
+      <div className={styles.cardContents}>
+        <h3>{title}</h3>
+        <p>by {author}</p>
+        <p>Pages: {pages}</p>
+        <div className={styles.row}>
+          <p>Read:</p>
+          <div className={styles.checkboxWrapper}>
+            <input
+              type="checkbox"
+              checked={read}
+              onChange={() => console.log("Changed")}
+            />
           </div>
-          <button className={styles.button} type="button">
-            Delete
-          </button>
         </div>
+        <button
+          className={styles.button}
+          type="button"
+          onClick={() => deleteItem(id)}
+        >
+          Delete
+        </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
