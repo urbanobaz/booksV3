@@ -3,12 +3,15 @@
 
 import { addBookToList } from "@/lib/mongo/books";
 import { revalidatePath } from "next/cache";
+import { getGoogleAPIBookInfo } from "@/lib/mongo/books";
 
 export async function create(formData) {
-  const title = formData.get("title");
-  const author = formData.get("author");
-  const pages = formData.get("pages");
-  const published = formData.get("published");
+  const booksData = await getGoogleAPIBookInfo(formData.get("title"));
+  const bookDetails = booksData.items[0].volumeInfo;
+  const title = bookDetails.title;
+  const author = bookDetails.authors[0];
+  const pages = bookDetails.pageCount;
+  const published = new Date(bookDetails.publishedDate);
   const read = true;
   const userEmail = "urbanobaz@yahoo.com";
   await addBookToList(title, author, pages, published, read, userEmail);

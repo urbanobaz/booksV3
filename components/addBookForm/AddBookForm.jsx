@@ -42,27 +42,6 @@ export default function AddBookForm() {
           className="input input-bordered input-primary w-full max-w-sm md:max-w-lg"
         />
       </div>
-      <div className={styles.row}>
-        <div className={styles.labelWrapper}>
-          <label className={cn(styles.label, "")}>Pages</label>
-        </div>
-        <input
-          name="pages"
-          type="number"
-          step="any"
-          className="input input-bordered input-primary w-full max-w-sm md:max-w-lg"
-        />
-      </div>
-      <div className={styles.row}>
-        <div className={styles.labelWrapper}>
-          <label className={cn(styles.label, "")}>Published</label>
-        </div>
-        <input
-          name="published"
-          type="date"
-          className="input input-bordered input-primary w-full max-w-sm md:max-w-lg"
-        />
-      </div>
       <button type="submit" className="btn btn-secondary">
         Add
       </button>
