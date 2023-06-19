@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "./BookCard.module.css";
-import { deleteAction } from "@/app/actions";
+import { deleteAction, updateReadAction } from "@/app/actions";
 import { useRouter } from "next/navigation";
 
 type BookCardProps = {
@@ -13,6 +13,8 @@ type BookCardProps = {
   id: string;
   read: boolean;
 };
+
+export const dynamic = "force-dynamic";
 
 const BookCard: React.FC<BookCardProps> = ({
   title,
@@ -26,6 +28,10 @@ const BookCard: React.FC<BookCardProps> = ({
     await deleteAction(id);
     router.push("/dashboard");
   }
+  async function updateReadValue(id: string, readValue: boolean) {
+    await updateReadAction(id, readValue);
+    router.refresh();
+  }
   return (
     <div className={styles.cardContainer}>
       <div className={styles.cardContents}>
@@ -38,7 +44,7 @@ const BookCard: React.FC<BookCardProps> = ({
             <input
               type="checkbox"
               checked={read}
-              onChange={() => console.log("Changed")}
+              onChange={() => updateReadValue(id, !read)}
             />
           </div>
         </div>

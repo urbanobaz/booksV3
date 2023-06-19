@@ -1,7 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use server";
 
-import { addBookToList, deleteBookFromDatabase } from "@/lib/mongo/books";
+import {
+  addBookToList,
+  deleteBookFromDatabase,
+  updateRead,
+} from "@/lib/mongo/books";
 import { revalidatePath } from "next/cache";
 import { getGoogleAPIBookInfo } from "@/lib/mongo/books";
 
@@ -20,4 +24,8 @@ export async function create(formData) {
 
 export async function deleteAction(id) {
   await deleteBookFromDatabase(id);
+}
+
+export async function updateReadAction(id, readValue) {
+  await updateRead(id, readValue);
 }

@@ -5,6 +5,15 @@ import { ObjectId } from "mongodb";
 
 export const dynamic = "force-dynamic";
 
+export interface Book {
+  _id: ObjectId;
+  title: string;
+  author: string;
+  pages: number;
+  published: Date;
+  read: boolean;
+}
+
 export default async function Home() {
   const user = await currentUser();
   const { books } = await getBooksByUser(
@@ -12,32 +21,30 @@ export default async function Home() {
       ? user?.emailAddresses[0].emailAddress
       : ""
   );
+  let numberOfPages = 0;
+  books.map((book: Book) => {
+    if (book.read) {
+      numberOfPages += book.pages;
+    }
+  });
 
   return (
     <div className="max-w-7xl mx-auto w-full pt-4">
       <p>{`${user?.emailAddresses[0].emailAddress} has ${books.length} in their book list.`}</p>
+      <p className="pt-4">{`Pages read: ${numberOfPages}`}</p>
       <div className="flex flex-wrap">
         {books &&
-          books.map(
-            (book: {
-              _id: ObjectId;
-              title: string;
-              author: string;
-              pages: number;
-              published: Date;
-              read: boolean;
-            }) => (
-              <BookCard
-                key={book._id.toString()}
-                title={book.title}
-                author={book.author}
-                pages={book.pages}
-                publishedDate={book.published}
-                id={book._id.toString()}
-                read={book.read}
-              />
-            )
-          )}
+          books.map((book: Book) => (
+            <BookCard
+              key={book._id.toString()}
+              title={book.title}
+              author={book.author}
+              pages={book.pages}
+              publishedDate={book.published}
+              id={book._id.toString()}
+              read={book.read}
+            />
+          ))}
       </div>
     </div>
   );
