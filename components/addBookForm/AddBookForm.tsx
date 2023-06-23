@@ -21,6 +21,7 @@ export default function AddBookForm(props: AddBookProps) {
       className="container max-w-3xl mx-auto w-full flex flex-col"
       action={(formData) => {
         action(formData, props.email);
+        // formRef.current()
         router.push("/dashboard");
       }}
     >

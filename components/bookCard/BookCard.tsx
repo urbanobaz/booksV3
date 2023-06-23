@@ -5,6 +5,7 @@ import styles from "./BookCard.module.css";
 import { deleteAction, updateReadAction } from "@/app/actions";
 import { useRouter } from "next/navigation";
 import { cn } from "@/app/helpers/utils";
+import { revalidatePath } from "next/cache";
 
 type BookCardProps = {
   title: string;
@@ -27,7 +28,7 @@ const BookCard: React.FC<BookCardProps> = ({
   const router = useRouter();
   async function deleteItem(id: string) {
     await deleteAction(id);
-    router.push("/dashboard");
+    router.refresh();
   }
   async function updateReadValue(id: string, readValue: boolean) {
     await updateReadAction(id, readValue);
