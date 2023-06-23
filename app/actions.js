@@ -9,7 +9,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { getGoogleAPIBookInfo } from "@/lib/mongo/books";
 
-export async function create(formData) {
+export async function create(formData, emailAddress) {
   const booksData = await getGoogleAPIBookInfo(formData.get("title"));
   const bookDetails = booksData.items[0].volumeInfo;
   const title = bookDetails.title;
@@ -17,7 +17,7 @@ export async function create(formData) {
   const pages = bookDetails.pageCount;
   const published = new Date(bookDetails.publishedDate);
   const read = formData.get("read") === "on" ? true : false;
-  const email = "urbanobaz@yahoo.com";
+  const email = emailAddress;
   await addBookToList(title, author, pages, published, read, email);
   revalidatePath("/dashboard");
 }
@@ -28,4 +28,8 @@ export async function deleteAction(id) {
 
 export async function updateReadAction(id, readValue) {
   await updateRead(id, readValue);
+}
+
+export async function action(formData, email) {
+  await create(formData, email);
 }

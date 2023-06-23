@@ -3,23 +3,26 @@
 import { useRef, useState } from "react";
 import styles from "./AddBookForm.module.css";
 import { cn } from "@/app/helpers/utils";
-import { create } from "../../app/actions";
+import { action } from "@/app/actions";
 import { useRouter } from "next/navigation";
 
-export default function AddBookForm() {
+type AddBookProps = {
+  email: string;
+};
+
+export default function AddBookForm(props: AddBookProps) {
   const formRef = useRef();
   const router = useRouter();
-  const [readValue, setReadValue] = useState();
+  const [readValue, setReadValue] = useState(false);
+  console.log(props.email);
 
-  async function action(formData) {
-    await create(formData);
-    formRef.current?.reset();
-    router.push("/dashboard");
-  }
   return (
     <form
       className="container max-w-3xl mx-auto w-full flex flex-col"
-      action={action}
+      action={(formData) => {
+        action(formData, props.email);
+        router.push("/dashboard");
+      }}
     >
       <h1 className={cn(styles.title, "mt-4")}>Add a book</h1>
       <div className={styles.row}>
