@@ -22,6 +22,12 @@ html {
   border-radius: 15px;
 }
 
+.cl-rootBox {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 @media (max-width: 1300px) {
   .wrapper {
     padding: 0 40px;
