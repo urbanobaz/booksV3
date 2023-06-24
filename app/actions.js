@@ -17,8 +17,8 @@ export async function create(formData, emailAddress) {
   const pages = bookDetails.pageCount;
   const published = new Date(bookDetails.publishedDate);
   const read = formData.get("read") === "on" ? true : false;
-  const email = emailAddress;
-  await addBookToList(title, author, pages, published, read, email);
+  const user = emailAddress;
+  await addBookToList(title, author, pages, published, read, user);
   revalidatePath("/dashboard");
 }
 
@@ -28,8 +28,4 @@ export async function deleteAction(id) {
 
 export async function updateReadAction(id, readValue) {
   await updateRead(id, readValue);
-}
-
-export async function action(formData, email) {
-  await create(formData, email);
 }

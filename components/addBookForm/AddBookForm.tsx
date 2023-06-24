@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styles from "./AddBookForm.module.css";
 import { cn } from "@/app/helpers/utils";
-import { action } from "@/app/actions";
+import { create } from "@/app/actions";
 import { useRouter } from "next/navigation";
 
 type AddBookProps = {
@@ -11,17 +11,14 @@ type AddBookProps = {
 };
 
 export default function AddBookForm(props: AddBookProps) {
-  const formRef = useRef();
   const router = useRouter();
   const [readValue, setReadValue] = useState(false);
-  console.log(props.email);
 
   return (
     <form
       className="container max-w-3xl mx-auto w-full flex flex-col"
       action={(formData) => {
-        action(formData, props.email);
-        // formRef.current()
+        create(formData, props.email);
         router.push("/dashboard");
       }}
     >
