@@ -2,6 +2,8 @@ import BookCard from "@/components/bookCard/BookCard";
 import { getBooksByUser } from "@/lib/mongo/books";
 import { currentUser } from "@clerk/nextjs";
 import { ObjectId } from "mongodb";
+import styles from "./Dashboard.module.css";
+import { cn } from "../helpers/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -29,10 +31,9 @@ export default async function Home() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto w-full pt-4">
-      <p>{`${user?.emailAddresses[0].emailAddress} has ${books.length} in their book list.`}</p>
-      <p className="pt-4">{`Pages read: ${numberOfPages}`}</p>
-      <div className="flex flex-wrap">
+    <div className={cn(styles.mainContent, "max-w-7xl mx-auto w-full pt-4")}>
+      <p className="flex text-center justify-center pt-4 pb-4">{`You have ${books.length} books in your list and you've read ${numberOfPages} pages!`}</p>
+      <div className="flex flex-wrap justify-center">
         {books &&
           books.map((book: Book) => (
             <BookCard

@@ -10,3 +10,26 @@ html {
   margin-top: 64px;
   height: calc(100svh - 64px);
 }
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  height: 75%;
+}
+
+.main-image {
+  aspect-ratio: 3 / 2;
+  border-radius: 15px;
+}
+
+@media (max-width: 1300px) {
+  .wrapper {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 750px) {
+  .wrapper {
+    display: none;
+  }
+}

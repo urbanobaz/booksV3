@@ -71,7 +71,7 @@
 }
 
 @media (max-width: 500px) {
-  .cardContainer {
+  /* .cardContainer {
     width: 300px;
     height: 300px;
   }
@@ -83,5 +83,24 @@
 
   .cardContainer p {
     font-size: 14px;
+  } */
+}
+
+@media (max-width: 640px) {
+  .cardContainer {
+    margin-right: 0;
   }
+  /* .cardContainer {
+    width: 300px;
+    height: 300px;
+  }
+
+  .cardContainer h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+
+  .cardContainer p {
+    font-size: 14px;
+  } */
 }

@@ -1,0 +1,12 @@
+@media (max-width: 1300px) {
+  .mainContent {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mainContent {
+    justify-content: center;
+  }
+}
