@@ -8,10 +8,11 @@ html {
 
 .children-wrapper {
   margin-top: 64px;
-  height: calc(100svh - 64px);
+  min-height: calc(100svh - 112px);
 }
 
-.wrapper {
+.wrapper,
+.wrapper-mini {
   display: flex;
   justify-content: center;
   height: 75%;
@@ -20,12 +21,19 @@ html {
 .main-image {
   aspect-ratio: 3 / 2;
   border-radius: 15px;
+  object-fit: cover;
 }
 
 .cl-rootBox {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+@media (min-width: 751px) {
+  .wrapper-mini {
+    display: none;
+  }
 }
 
 @media (max-width: 1300px) {
@@ -37,5 +45,9 @@ html {
 @media (max-width: 750px) {
   .wrapper {
     display: none;
+  }
+
+  .wrapper-mini {
+    padding: 0 15px;
   }
 }

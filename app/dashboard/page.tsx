@@ -4,6 +4,16 @@ import { currentUser } from "@clerk/nextjs";
 import { ObjectId } from "mongodb";
 import styles from "./Dashboard.module.css";
 import { cn } from "../helpers/utils";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import BookTable from "./BookTable";
 
 export const dynamic = "force-dynamic";
 
@@ -46,6 +56,7 @@ export default async function Home() {
               read={book.read}
             />
           ))}
+        <BookTable books={books} />
       </div>
     </div>
   );

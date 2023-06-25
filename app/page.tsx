@@ -15,6 +15,15 @@ export default function Home() {
           height="1000"
         />
       </div>
+      <div className="wrapper-mini">
+        <Image
+          src="/shots-books-mini.png"
+          alt="Books mini showcase image"
+          className="main-image"
+          width="500"
+          height="500"
+        />
+      </div>
     </div>
   );
 }

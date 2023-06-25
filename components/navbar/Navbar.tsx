@@ -18,7 +18,9 @@ const Navbar = async () => {
         <SignedIn>
           <div className="flex">
             <div className="flex flex-col justify-center mr-4">
-              <Link href="/add-book">Add book</Link>
+              <Link className="w-16 text-sm md:w-20 text-md" href="/add-book">
+                Add book
+              </Link>
             </div>
             <UserButton />
           </div>
