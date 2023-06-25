@@ -8,12 +8,6 @@ type BookTableProps = {
 };
 
 export default function BookTable({ books }: BookTableProps) {
-  const data = books.map((book: Book) => {
-    return {
-      ...book,
-      _id: book._id.toString(),
-    };
-  });
   return (
     <div className="container mx-auto py-10">
       <DataTable columns={columns} data={books} />

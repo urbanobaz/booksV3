@@ -12,9 +12,16 @@ const Navbar = async () => {
           "container max-w-7xl mx-auto py-4 w-full flex justify-between items-center"
         )}
       >
-        <Link className="text-primary text-xl" href="/">
-          Books & More
-        </Link>
+        <SignedIn>
+          <Link className="text-primary text-xl" href="/dashboard">
+            Books & More
+          </Link>
+        </SignedIn>
+        <SignedOut>
+          <Link className="text-primary text-xl" href="/">
+            Books & More
+          </Link>
+        </SignedOut>
         <SignedIn>
           <div className="flex">
             <div className="flex flex-col justify-center mr-4">
