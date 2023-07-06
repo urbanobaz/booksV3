@@ -37,7 +37,7 @@ const BookCard: React.FC<BookCardProps> = ({
   return (
     <div className={cn(styles.cardContainer, "h-full")}>
       <div className={cn(styles.cardContents, "h-full")}>
-        <h3>{title}</h3>
+        <h3>{title.length > 30 ? title.slice(0, 30).trim() + "..." : title}</h3>
         <p>by {author}</p>
         <p>Pages: {pages}</p>
         <div className={styles.row}>
