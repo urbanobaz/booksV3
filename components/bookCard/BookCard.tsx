@@ -44,6 +44,7 @@ const BookCard: React.FC<BookCardProps> = ({
           <p>Read:</p>
           <div className={styles.checkboxWrapper}>
             <input
+              className={styles.checkbox}
               type="checkbox"
               checked={read}
               onChange={() => updateReadValue(id, !read)}

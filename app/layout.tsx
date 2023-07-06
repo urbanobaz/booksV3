@@ -1,10 +1,10 @@
 import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "@/components/footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" data-theme="dracula">
-        <body className={inter.className}>
+        <body className={quicksand.className}>
           <Navbar />
           <div className="children-wrapper">{children}</div>
           <Footer />
