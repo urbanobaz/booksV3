@@ -9,7 +9,7 @@ type BookTableProps = {
 
 export default function BookTable({ books }: BookTableProps) {
   return (
-    <div className="container mx-auto py-10">
+    <div className="w-full mx-auto py-10">
       <DataTable columns={columns} data={books} />
     </div>
   );
